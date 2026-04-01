@@ -4,7 +4,7 @@ from pyspark.sql import functions as F
 
 
 class BronzeIngestion:
-    def __init__(self, app_name="list_orders"):
+    def __init__(self, app_name="list_customers"):
         self.spark = SparkSession.builder.appName(app_name).getOrCreate()
         print("Iniciando processamento..")
 
@@ -13,14 +13,11 @@ class BronzeIngestion:
 
         try:
             schema = StructType([
-                StructField("order_id", StringType(), True),
                 StructField("customer_id", StringType(), True),
-                StructField("order_status", StringType(), True),
-                StructField("order_purchase_timestamp", TimestampType(), True),
-                StructField("order_approved_at", TimestampType(), True),
-                StructField("order_delivered_carrier_date", TimestampType(), True),
-                StructField("order_delivered_customer_date", TimestampType(), True),
-                StructField("order_estimated_delivery_date", TimestampType(), True),
+                StructField("customer_unique_id", StringType(), True),
+                StructField("customer_zip_code_prefix", StringType(), True), # CEP pode conter zero à esquerda
+                StructField("customer_city", StringType(), True),
+                StructField("customer_state", StringType(), True),
                 StructField("ingestion_timestamp", TimestampType(), True)
             ])
 

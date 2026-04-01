@@ -1,10 +1,10 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.types import (StructType, StructField, StringType, TimestampType)
+from pyspark.sql.types import (StructType, StructField, StringType, IntegerType, TimestampType, FloatType)
 from pyspark.sql import functions as F
 
 
 class BronzeIngestion:
-    def __init__(self, app_name="list_orders"):
+    def __init__(self, app_name="list_products"):
         self.spark = SparkSession.builder.appName(app_name).getOrCreate()
         print("Iniciando processamento..")
 
@@ -13,14 +13,15 @@ class BronzeIngestion:
 
         try:
             schema = StructType([
-                StructField("order_id", StringType(), True),
-                StructField("customer_id", StringType(), True),
-                StructField("order_status", StringType(), True),
-                StructField("order_purchase_timestamp", TimestampType(), True),
-                StructField("order_approved_at", TimestampType(), True),
-                StructField("order_delivered_carrier_date", TimestampType(), True),
-                StructField("order_delivered_customer_date", TimestampType(), True),
-                StructField("order_estimated_delivery_date", TimestampType(), True),
+                StructField("product_id", StringType(), True),
+                StructField("product_category_name", StringType(), True),
+                StructField("product_name_lenght", IntegerType(), True),
+                StructField("product_description_lenght", IntegerType(), True),
+                StructField("product_photos_qty", IntegerType(), True),
+                StructField("product_weight_g", FloatType(), True),
+                StructField("product_length_cm", FloatType(), True),
+                StructField("product_height_cm", FloatType(), True),
+                StructField("product_width_cm", FloatType(), True),
                 StructField("ingestion_timestamp", TimestampType(), True)
             ])
 

@@ -1,10 +1,10 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.types import (StructType, StructField, StringType, TimestampType)
+from pyspark.sql.types import (StructType, StructField, StringType, IntegerType, FloatType, TimestampType)
 from pyspark.sql import functions as F
 
 
 class BronzeIngestion:
-    def __init__(self, app_name="list_orders"):
+    def __init__(self, app_name="list_payments"):
         self.spark = SparkSession.builder.appName(app_name).getOrCreate()
         print("Iniciando processamento..")
 
@@ -14,13 +14,10 @@ class BronzeIngestion:
         try:
             schema = StructType([
                 StructField("order_id", StringType(), True),
-                StructField("customer_id", StringType(), True),
-                StructField("order_status", StringType(), True),
-                StructField("order_purchase_timestamp", TimestampType(), True),
-                StructField("order_approved_at", TimestampType(), True),
-                StructField("order_delivered_carrier_date", TimestampType(), True),
-                StructField("order_delivered_customer_date", TimestampType(), True),
-                StructField("order_estimated_delivery_date", TimestampType(), True),
+                StructField("payment_sequential", IntegerType(), True),
+                StructField("payment_type", StringType(), True),
+                StructField("payment_installments", IntegerType(), True),
+                StructField("payment_value", FloatType(), True),
                 StructField("ingestion_timestamp", TimestampType(), True)
             ])
 
