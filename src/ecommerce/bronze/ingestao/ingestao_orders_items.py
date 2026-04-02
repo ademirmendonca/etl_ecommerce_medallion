@@ -37,6 +37,7 @@ class BronzeIngestion:
                 .saveAsTable(catalogo_path)
             )
             print(f"Processamento finalizado com sucesso em: {catalogo_path}")
+            
         except Exception as e:
             print(f"Erro ao processar novos dados: {e}")
 
