@@ -1,6 +1,3 @@
-# import sys
-# sys.path.append("/Workspace/Users/ademir.mendonca.teste@gmail.com/pipiline_teste_tecnico")
-
 from pyspark.sql import SparkSession
 from src.ecommerce.bronze.ingestao.ingestao_orders import BronzeIngestion
 
@@ -10,10 +7,10 @@ spark = SparkSession.getActiveSession()
 ambiente = "prd"  # prd / dev
 
 # Fonte
-file_path = "/Workspace/Users/ademir.mendonca.teste@gmail.com/pipiline_teste_tecnico/data/raw/olist_orders_dataset.csv"
+file_path = "/Workspace/Users/ademir.mendonca.teste@gmail.com/etl_ecommerce_medallion/data/raw/olist_orders_dataset.csv"
 
 # Destino
-workspace = "workspace"  # ajuste conforme seu ambiente
+workspace = "workspace"
 schema = f"bronze_{ambiente}"
 tabela = "orders"
 catalogo_path = f"{workspace}.{schema}.{tabela}"
@@ -34,6 +31,7 @@ def main():
         catalogo_path=catalogo_path,
         tipo_carga=tipo_carga
     )
+    
 
 if __name__ == "__main__":
     main()

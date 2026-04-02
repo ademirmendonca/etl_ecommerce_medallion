@@ -1,0 +1,35 @@
+from pyspark.sql import SparkSession
+from src.ecommerce.bronze.ingestao.ingestao_products import BronzeIngestion
+
+spark = SparkSession.getActiveSession()
+
+# Ambiente
+ambiente = "prd"  # prd / dev
+
+# Fonte
+file_path = "/Workspace/Users/ademir.mendonca.teste@gmail.com/etl_ecommerce_medallion/data/raw/olist_products_dataset.csv"
+
+# Destino
+workspace = "workspace"
+schema = f"bronze_{ambiente}"
+tabela = "products"
+catalogo_path = f"{workspace}.{schema}.{tabela}"
+
+# Tipo de carga
+if spark.catalog.tableExists(catalogo_path):
+    tipo_carga = "incremental"
+else:
+    print(f"Tabela não existe, criando.. {catalogo_path}")
+    tipo_carga = "full"
+
+
+def main():
+    pipe = BronzeIngestion()
+    pipe.ingestao_bronze(
+        file_path=file_path,
+        catalogo_path=catalogo_path,
+        tipo_carga=tipo_carga
+    )
+
+if __name__ == "__main__":
+    main()
