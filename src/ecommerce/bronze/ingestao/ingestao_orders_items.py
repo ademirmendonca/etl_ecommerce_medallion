@@ -18,8 +18,8 @@ class BronzeIngestion:
                 StructField("product_id", StringType(), True),
                 StructField("seller_id", StringType(), True),
                 StructField("shipping_limit_date", TimestampType(), True),
-                StructField("price", DecimalType(), True),
-                StructField("freight_value", DecimalType(), True),
+                StructField("price", DecimalType(10, 2), True),
+                StructField("freight_value", DecimalType(10, 2), True),
                 StructField("ingestion_timestamp", TimestampType(), True)
             ])
 

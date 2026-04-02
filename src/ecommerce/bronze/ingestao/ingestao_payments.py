@@ -17,7 +17,7 @@ class BronzeIngestion:
                 StructField("payment_sequential", IntegerType(), True),
                 StructField("payment_type", StringType(), True),
                 StructField("payment_installments", IntegerType(), True),
-                StructField("payment_value", DecimalType(), True),
+                StructField("payment_value", DecimalType(10, 2), True),
                 StructField("ingestion_timestamp", TimestampType(), True)
             ])
 
