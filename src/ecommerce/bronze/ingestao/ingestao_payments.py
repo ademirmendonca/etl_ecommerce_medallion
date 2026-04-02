@@ -1,5 +1,5 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.types import (StructType, StructField, StringType, IntegerType, FloatType, TimestampType)
+from pyspark.sql.types import (StructType, StructField, StringType, IntegerType, DecimalType, TimestampType)
 from pyspark.sql import functions as F
 
 
@@ -17,7 +17,7 @@ class BronzeIngestion:
                 StructField("payment_sequential", IntegerType(), True),
                 StructField("payment_type", StringType(), True),
                 StructField("payment_installments", IntegerType(), True),
-                StructField("payment_value", FloatType(), True),
+                StructField("payment_value", DecimalType(10, 2), True),
                 StructField("ingestion_timestamp", TimestampType(), True)
             ])
 

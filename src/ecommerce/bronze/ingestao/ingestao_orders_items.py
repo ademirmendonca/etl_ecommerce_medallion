@@ -1,5 +1,5 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.types import (StructType, StructField, StringType, TimestampType, IntegerType, FloatType)
+from pyspark.sql.types import (StructType, StructField, StringType, TimestampType, IntegerType, DecimalType)
 from pyspark.sql import functions as F
 
 
@@ -18,8 +18,8 @@ class BronzeIngestion:
                 StructField("product_id", StringType(), True),
                 StructField("seller_id", StringType(), True),
                 StructField("shipping_limit_date", TimestampType(), True),
-                StructField("price", FloatType(), True),
-                StructField("freight_value", FloatType(), True),
+                StructField("price", DecimalType(10, 2), True),
+                StructField("freight_value", DecimalType(10, 2), True),
                 StructField("ingestion_timestamp", TimestampType(), True)
             ])
 
