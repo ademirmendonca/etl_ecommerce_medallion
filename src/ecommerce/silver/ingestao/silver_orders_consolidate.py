@@ -7,7 +7,7 @@ class ETLSilver:
         self.spark = SparkSession.builder.appName(app_name).getOrCreate()
         print("Iniciando processamento etl-silver..")
 
-    def ingestao_silver(self, df_orders, df_orders_items, df_customers, df_products, df_selleas, catalogo_destino, tipo_carga):
+    def ingestao_silver(self, df_orders, df_orders_items, df_customers, df_products, df_selleas, df_reviews, catalogo_destino, tipo_carga):
         print(f"Processando novos dados, carga: {tipo_carga}")
 
         try:
@@ -25,6 +25,7 @@ class ETLSilver:
                 .join(df_customers.alias("c"), "customer_id", "inner")
                 .join(df_products.alias("p"), "product_id", "inner")
                 .join(df_selleas.alias("s"), "seller_id", "inner")
+                .join(df_reviews.alias("r"), "order_id", "inner" )
             )
 
             df_final = df_join.select(
@@ -66,6 +67,13 @@ class ETLSilver:
                 "s.seller_zip_code_prefix",
                 "s.seller_city",
                 "s.seller_state",
+
+                # orders reviews
+                "r.review_score",
+                "r.review_comment_title",
+                "r.review_comment_message",
+                "r.review_creation_date",
+                "r.review_answer_timestamp",
 
                 # controle (uma única)
                 F.current_timestamp().alias("ingestion_timestamp")

@@ -12,6 +12,7 @@ df_orders_items = spark.read.table(f"workspace.bronze_{ambiente}.orders_items")
 df_customers = spark.read.table(f"workspace.bronze_{ambiente}.customers")
 df_products = spark.read.table(f"workspace.bronze_{ambiente}.products")
 df_selleas = spark.read.table(f"workspace.bronze_{ambiente}.sellers")
+df_reviews = spark.read.table(f"workspace.bronze_{ambiente}.reviews")
 
 # Destino
 workspace = "workspace"
@@ -35,6 +36,7 @@ def main():
         df_customers=df_customers,
         df_products=df_products,
         df_selleas=df_selleas,
+        df_reviews=df_reviews,
         catalogo_destino=catalogo_destino,
         tipo_carga=tipo_carga
     )
