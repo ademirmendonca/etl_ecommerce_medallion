@@ -43,29 +43,15 @@ Amostra simples de dados duplicados:
 ![image_1775074264622.png](./image_1775074264622.png "image_1775074264622.png")
 
 
-## Tabela: review - problemas críticos
+## Tabela: review
 Coluna review_id possui 1 valores nulos
-
 Coluna order_id possui 2236 valores nulos
-
 Coluna review_score possui 4937 valores nulos
-
 Coluna review_comment_title possui 92157 valores nulos
-
 Coluna review_comment_message possui 63079 valores nulos
-
 Coluna review_creation_date possui 8832 valores nulos
-
 Coluna review_answer_timestamp possui 8785 valores nulos
-
-Há "descolunamento" nos dados causando inconsistência nos dados, vide print abaixo.
-Dados não consistentes na coluna "review_id"
-![image_1775084911613.png](./image_1775084911613.png "image_1775084911613.png")
-
-![image_1775084990039.png](./image_1775084990039.png "image_1775084990039.png")
-
-
-![image_1775085040695.png](./image_1775085040695.png "image_1775085040695.png")
+Obs.: Descolunamento foi ajustado fazendo a leitura dos dados com o parâmetro "multiline=True" e o problema foi resolvido.
 
 
 

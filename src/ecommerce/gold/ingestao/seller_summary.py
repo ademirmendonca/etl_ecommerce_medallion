@@ -21,6 +21,7 @@ class ETLGold:
                 .agg(
                     F.countDistinct(df_consolidate.order_id).alias("total_orders"),
                     F.sum(df_payments.total_pago).alias("total_revenue"),
+                    F.round(F.avg(df_consolidate.review_score), 2).alias("avg_review_score")
                 )
             )
 

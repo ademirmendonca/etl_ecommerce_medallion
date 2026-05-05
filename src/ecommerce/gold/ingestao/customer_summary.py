@@ -21,7 +21,8 @@ class ETLGold:
                 .agg(
                     F.count(df_consolidate.order_id).alias("total_orders"),
                     F.sum(df_consolidate.price + df_consolidate.freight_value).alias("total_revenue"),
-                    F.round(F.avg(df_consolidate.price + df_consolidate.freight_value), 2).alias("avg_order_value")
+                    F.round(F.avg(df_consolidate.price + df_consolidate.freight_value), 2).alias("avg_order_value"),
+                    F.round(F.avg(df_consolidate.review_score.cast("double")), 2).cast("decimal(3,2)").alias("avg_review_score")
                 )
             )
 

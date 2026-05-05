@@ -23,12 +23,12 @@ class BronzeIngestion:
                 StructField("ingestion_timestamp", TimestampType(), True)
             ])
 
-            df = self.spark.read.csv(file_path, schema=schema, header=True, sep=",")
+            df = self.spark.read.csv(file_path, schema=schema, header=True, sep=",", multiLine=True)
 
             df = (
                 df.withColumn("ingestion_timestamp", F.current_timestamp())
             )
-            
+            df.display()
             (
                 df
                 .write
