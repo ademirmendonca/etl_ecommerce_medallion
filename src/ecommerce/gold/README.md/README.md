@@ -1,8 +1,4 @@
 # Detalhamento -> gold
-###Tabela: customer_summary
-- Devido a inconsistência dos dados, já destacada na camada silver da fonte **"reviews"**, neste primeiro momento não foi considerado a avaliação do cliente junto a tabela **"customer_summary"** porque poderá comprometer consideravelmente a tomada de decisão, mas pode ser agregado posteriormente considerando a chegada de uma nova base de dados consistente.
-Obs: Devido a alta volumetria de inconsistência, não é viável a manutenção da base de dados manualmente. Para mais informações, vide readme.md da camada silver.
-
 
 ### Tabela: product_summary
 

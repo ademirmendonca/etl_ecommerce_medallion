@@ -66,6 +66,7 @@ top_state = (df_customer
 top_seller = (df_seller
     .filter(F.col("total_orders") >= 10)
     .withColumn("media_pedido", F.col("total_revenue") / F.col("total_orders"))
+    .select("seller_id", "total_revenue", "total_orders", "media_pedido", "avg_review_score")
     .orderBy(F.desc("media_pedido"))
     .limit(1)
     .collect()[0]
@@ -88,5 +89,6 @@ print(f"- Vendedor ID: {top_seller['seller_id']}")
 print(f"  Receita total R$: {top_seller['total_revenue']}")
 print(f"  Pedidos: {top_seller['total_orders']}")
 print(f"  Receita média por pedido R$: {round(top_seller['media_pedido'], 2)}")
+print(f"  Avaliação média: {round(top_seller['avg_review_score'], 2)}")
 
 

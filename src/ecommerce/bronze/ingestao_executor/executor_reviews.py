@@ -7,7 +7,7 @@ spark = SparkSession.getActiveSession()
 ambiente = "prd"  # prd / dev
 
 # Fonte
-file_path = "/Workspace/Users/ademir.mendonca.teste@gmail.com/etl_ecommerce_medallion/data/raw/olist_order_reviews_dataset.csv"
+file_path = "/Volumes/workspace/dados/raw/olist_order_reviews_dataset.csv"
 
 # Destino
 workspace = "workspace"
